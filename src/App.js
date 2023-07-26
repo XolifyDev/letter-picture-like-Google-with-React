@@ -1,21 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import "./app.scss";
-import {getRandomColor,createImageFromInitials} from './Components/Utils'
+import {getRandomColor,createImageFromInitials, genCharArray} from './Components/Utils'
 function App() {
-	let name = "Jhon Smith";
-	let imgSrc = "";
+	let name = useState()
+	let imgSrc = {};
+	const alphabet = genCharArray('a', 'z');
 
 	return (
 		<div>
-			<img
-				id='preview'
-				src={
-					imgSrc.length <= 0
-						? createImageFromInitials(500, name, getRandomColor())
-						: imgSrc
-				}
-				alt='profile-pic'
-			/>
+			<input type="text" onInput={(e) => name = e.target.value} />
+			{ alphabet.map((letter) => (
+				<img
+					id='preview'
+					src={
+						createImageFromInitials(500, letter, getRandomColor(), imgSrc)
+					}
+					alt='profile-pic'
+				/>
+			))}
 		</div>
 	);
 }

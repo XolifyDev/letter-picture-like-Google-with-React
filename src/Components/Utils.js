@@ -1,3 +1,10 @@
+export const genCharArray = (charA, charZ) => {
+  var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+  for (; i <= j; ++i) {
+    a.push(String.fromCharCode(i));
+  }
+  return a;
+}
 export const  getRandomColor=()=> {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -25,7 +32,7 @@ export const  getRandomColor=()=> {
 
 
 
-export const createImageFromInitials = (size, name, color) => {
+export const createImageFromInitials = (size, name, color, imgSrc) => {
     if (name == null) return;
     name=getInitials(name)
 
@@ -36,14 +43,14 @@ export const createImageFromInitials = (size, name, color) => {
     context.fillStyle="#ffffff"
     context.fillRect(0,0,size,size)
 
-    context.fillStyle=`${color}50`
+    context.fillStyle=`#3921FB`
     context.fillRect(0,0,size,size)
 
-    context.fillStyle=color;
+    context.fillStyle='#fff';
     context.textBaseline='middle'
     context.textAlign='center'
-    context.font =`${size/2}px Roboto`
+    context.font =`${300}px 'Poppins', sans-serif`
     context.fillText(name,(size/2),(size/2))
-
+    imgSrc[name] = canvas.toDataURL();
     return canvas.toDataURL()
 };
